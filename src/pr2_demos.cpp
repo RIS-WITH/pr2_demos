@@ -14,8 +14,8 @@
 Task createTaskInit()
 {
   Task task;
-  task.push_back(createAction({{ 0.096, 0.802, 0.198, -2.049, -0.020, -1.877, 31.447 }},
-                              {{{ 0.096, 0.802, 0.198, -2.049, -0.020, -1.877, 31.447 }}}, 2));
+  task.push_back(createAction({{ 0., 0.98625, 0., -1.92394, 0., -2.17469, 0. }},
+                              {{ 0., 0.98625, 0., -1.92394, 0., -2.17469, 0.  }}, 2));
   //task.push_back(createAction(head_front));
   task.push_back(createAction(gripper_close));
 
