@@ -4,7 +4,7 @@
 #include "pr2_demo_lib/Task.h"
 #include "pr2_demo_lib/Pr2Robot.h"
 
-Task createDanceTask()
+Task createDanceTask(const std::string& synchro_ip = "")
 {
   Task task;
   
@@ -49,8 +49,9 @@ Task createDanceTask()
                                 { -0.061, 0.3777, 0.154, -1.98, 0.052, -1.33, 0 },
                                 { -0.061, 0.3777, 0.154, -1.98, 0.052, -1.33, 0 },
                                 { -0.061, 0.3777, 0.154, -1.98, 0.052, -1.33, 0 }}));
+    
 
-    task.push_back(createActionSpeak("Je suis vraiment heureux que vous soyez ici. Je suis sur que vous allez adorer ce que vous allez voir."));
+    task.push_back(createActionSpeak("Je suis vraiment heureux que vous soyez ici. Je suis sure que vous allez adorer ce que vous allez voire."));
 
     task.push_back(createAction({{ 0.59245, 0.06705, 0.29680, -1.943, -1.3043, -0.28357, -0.75871 },
                                  { 0.09398, 0.21196, 0.50474, -1.94734, -1.3043, -0.10853, -0.23958 },
@@ -66,6 +67,10 @@ Task createDanceTask()
 
   task.push_back(createActionSpeak("N'est-ce pas impressionant de pouvoir faire ca ?"));
 
+  if(synchro_ip != "")
+    task.push_back(createActionLaunchSynchro(synchro_ip));
+    
+  
   task.push_back(createActionTorso(0.15));
   task.push_back(createAction({{ 0.59245, 0.06705, 0.29680, -1.943, -1.3043, -0.28357, -0.75871  },
                                 { 0., 0., 0., 0., 3.14159, 0., 0. },// 210
@@ -106,9 +111,10 @@ Task createDanceTask()
                                { 0., 0.98625, 0., -1.92394, 0., -2.17469, 0. }}));
 
   task.push_back(createActionTorso(0.));
+  
   task.push_back(createActionSpeak("Bon, bon, bonjour. je suis P"));
   task.push_back(createActionSpeak("P R 2."));
-
+  
   task.push_back(createAction({{ -0.238, 0.612, 0.128, -1.409, 11.536, -1.551, -37.484 },
                                { 0.261, 0.271, 0.379, -0.939, 13.155, -0.784, -36.688 },
                                { 0.811, 0.123, -0.611, -1.266, 12.013, -0.426, -36.416 },
@@ -119,11 +125,17 @@ Task createDanceTask()
                                { -0.061, 0.567, -0.536, -1.145, -7.652, -1.144, 113.032 },
                                { -0.145, 0.479, -0.187, -1.699, -8.796, -0.584, 112.959 }}, 1));
 
-  task.push_back(createActionSpeak("vous aider. bras puissant. vraiment heureux. adorer ce que vous allez. impressionant de pouvoir? makaraina.\
+  /*task.push_back(createActionSpeak("vous aider. bras puissant. vraiment heureux. adorer ce que vous allez. impressionant de pouvoir? makaraina.\
                                     Un robot n'est rien de plus qu'un ordinateur connecté à des moteurs et descapteurs.\
                                     Un robot ne pense pas. Il ne vois pas. Il n'a pas d'aimotions. Il n'a pas de sentiments. Un robot n'est ni heureux ni triste...\
                                     Tout ce que vous venez de voir ici n'est qu'un script et tout ce dialogue n'est qu'un text.\
-                                    Il est maintenent temps de vraiment voir ce qu'il y a derriaire la machine."));
+                                    Il est maintenent temps de vraiment voir ce qu'il y a derriaire la machine."));*/
+
+  task.push_back(createActionSpeak("aider. puissant. heureux. adorer. impressionant? makaraina.\
+                                    Un robot n'est rien de plus qu'un ordinateur connecté à des moteurs et des capteurs.\
+                                    Un robot ne pense pas, ne vois pas, n'a pas d'aimotions, n'a pas de sentiments. Un robot n'est ni heureux ni triste...\
+                                    Tout ce que vous venez de voir n'est qu'un script.\
+                                    Il est temps de voir ce qu'il y a derriaire la machine."));
 
   task.push_back(createAction({{ 1.441, -0.295, -0.057, -1.393, 11.894, -1.041, -34.825 },
                                { 0.950, -0.019, 0.041, -1.403, 250, -1.523, 250 },
@@ -135,7 +147,7 @@ Task createDanceTask()
                                { 0.145, -0.012, -2.306, -1.085, -250, -1.227, -25 },
                                { -0.260, -0.144, -0.752, -1.097, -8.064, -1.459, 25.097 },
                                { 0.096, 0.802, 0.198, -2.049, -0.020, -1.877, 15.607 },
-                               { 0., 0.98625, 0., -1.92394, 0., -2.17469, 0. }}, 3));
+                               { 0., 0.98625, 0., -1.92394, 0., -2.17469, 0. }}, 3.5));
 
   return task;
 }

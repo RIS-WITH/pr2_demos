@@ -38,6 +38,7 @@ int main(int argc, char** argv)
   Parameters params;
   params.insert(Parameter("task", {"-t", "--task"}));
   params.insert(Parameter("language", {"-l", "--language"}, {"fr"}));
+  params.insert(Parameter("ip", {"-i", "--ip"}, {""}));
 
   params.set(argc, argv);
   params.display();
@@ -55,7 +56,8 @@ int main(int argc, char** argv)
   else if(params.at("task").getFirst() == "dance")
   {
     std::cout << "start dance !" << std::endl;
-    Task task = createDanceTask();
+    std::string ip = params.at("ip").getFirst();
+    Task task = createDanceTask(ip);
     executeTask(&robot, task);
   }
   else if(params.at("task").getFirst() == "pick")
