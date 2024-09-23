@@ -7,6 +7,7 @@
 
 #include "pr2_demos/PickTask.h"
 #include "pr2_demos/Macarena.h"
+#include "pr2_demos/MacarenaSynchro.h"
 
 #include <chrono>
 #include <iostream>
@@ -58,6 +59,18 @@ int main(int argc, char** argv)
     std::cout << "start dance !" << std::endl;
     std::string ip = params.at("ip").getFirst();
     Task task = createDanceTask(ip);
+    executeTask(&robot, task);
+  }
+  else if(params.at("task").getFirst() == "synchro")
+  {
+    std::string ip = params.at("ip").getFirst();
+    if(ip == "")
+    {
+      std::cout << "syncho dance require a synchro ip. Provide it using the -i or --ip option." << std::endl;
+      return -1;
+    }
+     std::cout << "start synchro dance !" << std::endl;
+    Task task = createDanceSynchroTask(ip);
     executeTask(&robot, task);
   }
   else if(params.at("task").getFirst() == "pick")
