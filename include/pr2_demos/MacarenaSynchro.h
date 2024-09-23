@@ -7,6 +7,10 @@
 Task createDanceSynchroTask(const std::string& synchro_ip)
 {
   Task task;
+
+  task.push_back(createActionLaunchSynchro(synchro_ip));
+
+  task.push_back(createActionDelay(7000));
   
   task.push_back(createAction({{ 0., 0.98625, 0., -1.92394, 0., -2.17469, 0. },
                                { 0., 0.98625, 0., -1.92394, 0., -2.17469, 0. }},
@@ -115,9 +119,9 @@ Task createDanceSynchroTask(const std::string& synchro_ip)
                               {{ 0., 1.2584, 0., -1.94338, 0., -0.974109, 0 },
                                { 0., 0.98625, 0., -1.92394, 0., -2.17469, 0. }}));
 
-  task.push_back(createActionTorso(0.));
-
   task.push_back(createActionWaitSynchro());
+
+  task.push_back(createActionTorso(0.));
   
   task.push_back(createActionSpeak("Bon, bon, bonjour. je suis P"));
   task.push_back(createActionSpeak("P R 2."));
