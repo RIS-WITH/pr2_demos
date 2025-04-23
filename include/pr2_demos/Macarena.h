@@ -67,8 +67,7 @@ Task createDanceTask(const std::string& synchro_ip = "")
 
   task.push_back(createActionSpeak("N'est-ce pas impressionant de pouvoir faire ca ?"));
 
-  if(synchro_ip != "")
-    task.push_back(createActionLaunchSynchro(synchro_ip));
+  task.push_back(createActionLaunchSynchro(synchro_ip));
     
   
   task.push_back(createActionTorso(0.15));
